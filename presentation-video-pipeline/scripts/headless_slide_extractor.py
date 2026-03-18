@@ -26,7 +26,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--skip",
         type=float,
-        default=3,
+        default=1,
         help="Seconds to skip between frame comparisons",
     )
     parser.add_argument(

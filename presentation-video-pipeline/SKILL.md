@@ -17,7 +17,7 @@ Use this skill to process a presentation recording into stable local files with 
 4. If the input is a URL, download the video and any available subtitles only when the local artifacts do not already exist or when the user explicitly asks for a fresh download.
 5. Extract slides from the local video, not from the URL, unless there is a compelling reason not to.
 6. Extract audio from the local video with `ffmpeg` only if the needed MP3 does not already exist.
-7. Prefer downloaded subtitles when they exist and are good enough; otherwise transcribe the MP3 with `parakeet-mlx`.
+7. Prefer downloaded subtitles when they exist and are good enough; otherwise transcribe the MP3 with a user-approved ASR tool.
 8. Convert subtitle or ASR output into Markdown, apply terminology corrections, remove filler/false-start noise, and add topic-shift headers when the user asked for a polished transcript.
 9. Rename outputs so the final set shares the same basename.
 
