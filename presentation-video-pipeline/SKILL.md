@@ -1,6 +1,6 @@
 ---
 name: presentation-video-pipeline
-description: Turn a recorded talk, lecture, webinar, or screen-shared presentation video into reusable artifacts such as a downloaded local video, extracted slide PDF, audio-only MP3, subtitles, and a cleaned Markdown transcript. Use when Codex is given a presentation URL or video file and needs to do any combination of video download, slide extraction with slide-extractor, audio extraction with ffmpeg, subtitle download with yt-dlp, transcription with parakeet-mlx, transcript cleanup, or output renaming based on inferred presenter/title metadata.
+description: Turn a recorded talk, lecture, webinar, or screen-shared presentation video into reusable artifacts such as a downloaded local video, extracted slide PDF, audio-only MP3, subtitles, and a cleaned Markdown transcript. Use when given a presentation URL or video file and asked to do any combination of video download, slide extraction with slide-extractor, audio extraction with ffmpeg, subtitle download with yt-dlp, transcription with parakeet-mlx, transcript cleanup, or output renaming based on inferred presenter/title metadata.
 ---
 
 # Presentation Video Pipeline
