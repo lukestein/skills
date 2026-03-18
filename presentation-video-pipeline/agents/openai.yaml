@@ -1,0 +1,4 @@
+interface:
+  display_name: "Presentation Video Pipeline"
+  short_description: "Extract slides, audio, and transcript"
+  default_prompt: "Use $presentation-video-pipeline to process this presentation recording into slides, audio, and a cleaned transcript."
