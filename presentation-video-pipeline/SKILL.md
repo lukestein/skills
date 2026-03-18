@@ -112,19 +112,25 @@ Use `ffmpeg` to create a high-quality MP3 from the local video.
 - Keep the audio basename aligned with the video basename.
 - If the user asked only for transcript work, still keep the MP3 because it is the durable input for re-transcription later.
 
-## Subtitle And Transcript Strategy
+## Subtitle and Transcript Strategy
 
 Choose the cheapest trustworthy text source first.
 
 1. Use manually uploaded subtitles if they exist.
 2. Otherwise use auto-generated YouTube subtitles if they are available and acceptable.
-3. Otherwise transcribe the MP3 with `parakeet-mlx`.
+3. Otherwise transcribe the MP3 with an ASR tool.
 
-For `parakeet-mlx`:
+Before reaching step 3, ask the user how they want to handle transcription. Do not install or run any transcription tool without confirmation. Suggested prompt:
+
+> No subtitles are available. To generate a transcript I would need to transcribe the audio. I can use `parakeet-mlx` (Apple Silicon / MLX, large model download) or another tool you prefer. How would you like to proceed?
+
+If the user confirms `parakeet-mlx`:
 
 - Use the `transcribe` subcommand and write results into the working output folder.
 - Prefer `srt` or `json` output when you plan to post-process into Markdown.
 - Note that this installation may crash in a headless terminal when MLX cannot initialize Metal. If that happens, say so clearly and instruct the user to rerun on a local interactive Mac session.
+
+If the user names a different tool, use that instead and adapt the output to whatever format `clean_transcript.py` accepts (`.srt`, `.vtt`, `.txt`, `.md`, or Parakeet `.json`).
 
 ## Transcript Cleanup
 
@@ -147,12 +153,15 @@ See [references/transcript-cleanup.md](./references/transcript-cleanup.md) for t
 
 ## Dependency Setup
 
-Document dependencies explicitly so the skill is portable:
+Core dependencies — install these without asking:
 
 - `yt-dlp` for video and subtitle download
 - `ffmpeg` for audio extraction
-- `slide-extractor` in a Python or conda environment
-- `parakeet-mlx` for transcription on Apple Silicon / MLX-compatible setups
+- `slide-extractor` in a Python or conda environment (small package, required for slide extraction)
+
+Optional heavy dependency — ask before installing:
+
+- `parakeet-mlx` for ASR transcription on Apple Silicon / MLX-compatible setups. This is a large model download. Confirm with the user before installing it, and offer to use their preferred transcription tool instead.
 
 For installation examples and command templates, read [references/commands.md](./references/commands.md).
 

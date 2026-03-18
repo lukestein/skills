@@ -4,14 +4,15 @@ Use these as starting templates, then adjust paths, subtitle languages, and file
 
 ## Dependency Setup
 
-Install the common CLI tools with your platform package manager. On macOS:
+### Core dependencies
+
+Install these without asking the user. They are small and required for the main workflow:
 
 ```bash
 brew install ffmpeg yt-dlp
-uv tool install parakeet-mlx
 ```
 
-If you prefer Conda for the slide extraction environment:
+For slide extraction, prefer a dedicated Conda environment:
 
 ```bash
 conda create -n slide_extractor python=3.11 -y
@@ -20,7 +21,7 @@ conda activate slide_extractor
 uv pip install --upgrade slide-extractor
 ```
 
-If you are not using Conda, install `slide-extractor` into any Python environment you manage:
+If not using Conda, install `slide-extractor` into any Python environment you manage:
 
 ```bash
 uv pip install --upgrade slide-extractor
@@ -32,17 +33,19 @@ Fallback if `uv` is unavailable:
 python -m pip install --upgrade slide-extractor
 ```
 
-For transcription:
-
-```bash
-uv tool install parakeet-mlx
-```
-
-For interactive use, especially on macOS, activation via Conda's shell hook is often more reliable:
+For interactive use, activation via Conda's shell hook is often more reliable:
 
 ```bash
 source "$(conda info --base)/etc/profile.d/conda.sh"
 conda activate slide_extractor
+```
+
+### Transcription (optional — ask first)
+
+`parakeet-mlx` involves a large model download. Do not install it without confirming with the user. If the user agrees:
+
+```bash
+uv tool install parakeet-mlx
 ```
 
 ## Inspect URL Metadata
@@ -74,7 +77,7 @@ Example inventory check:
 find . -maxdepth 1 -type f | sort
 ```
 
-## Download Video And Subtitles
+## Download Video and Subtitles
 
 Prefer an MP4 container for saved local videos. This is usually more convenient for reuse and matches the skill's naming examples.
 
